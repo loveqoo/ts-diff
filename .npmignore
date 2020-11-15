@@ -1,0 +1,12 @@
+.idea
+build/test
+node_modules
+src
+test
+.eslintignore
+.eslintrc.json
+.gitignore
+.nvmrc
+.prettierrc.js
+jest.config.js
+tsconfig.json
