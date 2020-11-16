@@ -92,16 +92,25 @@ export const diff = (a: unknown, b: unknown, strictMode = true) => {
         checkCircularRef(hold.ref, a);
         hold.ref.set(a, undefined);
         if (typeGuards.isArray(a) && typeGuards.isArray(b)) {
-          a.forEach((aValue, index) =>
-            diffInner(
-              aValue,
-              b[index],
-              reversed,
-              hold,
-              currentPath.concat([`[${index}]`]),
-              false
-            )
-          );
+          if (a.length !== b.length) {
+            !reversed &&
+              hold.propertyDiffs.push({
+                path: currentPath.join('.'),
+                diffType: 'MOD',
+                left: a,
+                right: b,
+              });
+          } else {
+            a.forEach((aValue, index) =>
+              diffInner(
+                aValue,
+                b[index],
+                reversed,
+                hold,
+                currentPath.concat([`[${index}]`]),
+                false)
+            );
+          }
         } else if (
           typeGuards.isObject(a, aType) &&
           typeGuards.isObject(b, bType)

@@ -60,12 +60,14 @@ describe('diff test', () => {
 
   test('Diff value - array', () => {
     expect(wrappedDiff([1, 2, 3], [1, 2, 3]).length).toEqual(0);
+    expect(wrappedDiff([1, 2, 3], [1]).length).toEqual(1);
+    expect(wrappedDiff([1, 2, 3], [1, 3, 4]).length).toEqual(2);
     expect(wrappedDiff([1, 2, 3], false).length).toEqual(1);
     expect(wrappedDiff([1, 2, 3], null).length).toEqual(1);
     expect(wrappedDiff([1, 2, 3], undefined).length).toEqual(1);
     expect(wrappedDiff([1, 2, 3], 1).length).toEqual(1);
     expect(wrappedDiff([1, 2, 3], '').length).toEqual(1);
-    expect(wrappedDiff([1, 2, 3], []).length).toEqual(3);
+    expect(wrappedDiff([1, 2, 3], []).length).toEqual(1);
     expect(wrappedDiff([1, 2, 3], {}).length).toEqual(1);
   });
 
