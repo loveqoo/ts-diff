@@ -108,7 +108,8 @@ export const diff = (a: unknown, b: unknown, strictMode = true) => {
                 reversed,
                 hold,
                 currentPath.concat([`[${index}]`]),
-                false)
+                false
+              )
             );
           }
         } else if (
